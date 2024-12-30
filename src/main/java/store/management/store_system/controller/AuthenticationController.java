@@ -2,16 +2,17 @@ package store.management.store_system.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import store.management.store_system.dto.AppResponse;
+import store.management.store_system.dto.AuthenticationDto;
 import store.management.store_system.dto.RegistrationDto;
-import store.management.store_system.service.AuthenticationService;
+import store.management.store_system.service.auth.AuthenticationService;
+
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/auth")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
@@ -22,7 +23,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("create_account")
-    public ResponseEntity<AppResponse<String>> createAccount(@RequestBody RegistrationDto registrationDto){
+    public ResponseEntity<AppResponse<String>> createAccount(@RequestBody @Valid RegistrationDto registrationDto){
         return ResponseEntity.ok(authenticationService.createAccount(registrationDto));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AppResponse<String>> login(@RequestBody AuthenticationDto authenticationDto){
+        return ResponseEntity.ok(authenticationService.signIn(authenticationDto));
     }
 }

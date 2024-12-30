@@ -26,7 +26,10 @@ public class User {
 
     private String password;
 
-    private String role;
+    private String department;
+
+    @ManyToOne
+    private Role roles;
 
     private final String timeStamp = String.valueOf(LocalDateTime.now());
 }
