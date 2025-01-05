@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import store.management.store_system.dto.AppResponse;
 import store.management.store_system.dto.AuthenticationDto;
 import store.management.store_system.dto.RegistrationDto;
+import store.management.store_system.dto.UpdateProfile;
 import store.management.store_system.service.auth.AuthenticationService;
 
 import javax.validation.Valid;
@@ -22,7 +23,7 @@ public class AuthenticationController {
         return "hello";
     }
 
-    @PostMapping("create_account")
+    @PostMapping("create-account")
     public ResponseEntity<AppResponse<String>> createAccount(@RequestBody @Valid RegistrationDto registrationDto){
         return ResponseEntity.ok(authenticationService.createAccount(registrationDto));
     }
@@ -31,4 +32,6 @@ public class AuthenticationController {
     public ResponseEntity<AppResponse<String>> login(@RequestBody AuthenticationDto authenticationDto){
         return ResponseEntity.ok(authenticationService.signIn(authenticationDto));
     }
+
+
 }

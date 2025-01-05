@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import store.management.store_system.dto.AppResponse;
 import store.management.store_system.dto.AuthenticationDto;
 import store.management.store_system.dto.RegistrationDto;
+import store.management.store_system.dto.UpdateProfile;
 import store.management.store_system.entity.Role;
 import store.management.store_system.entity.User;
 import store.management.store_system.repository.RoleRepository;
@@ -61,6 +62,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return new AppResponse<>(0, savedUser.getLastName() + " your account has been created");
     }
 
+
     public AppResponse<String> signIn(AuthenticationDto authenticationDto) {
 
         var user = myUserDetailsService.loadUserByUsername(authenticationDto.getEmail());
@@ -83,4 +85,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 return null;
         }
     }
+
+
 }

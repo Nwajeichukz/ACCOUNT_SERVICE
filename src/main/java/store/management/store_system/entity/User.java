@@ -31,5 +31,5 @@ public class User {
     @ManyToOne
     private Role roles;
 
-    private final String timeStamp = String.valueOf(LocalDateTime.now());
+    private final String timeOfCreation = String.valueOf(LocalDateTime.now());
 }
